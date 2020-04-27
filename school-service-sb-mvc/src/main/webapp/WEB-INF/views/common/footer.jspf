@@ -1,0 +1,127 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">...</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="text-danger">Warning!</span>
+            </div>
+            <div class="modal-body">
+           Are you sure to delete this record?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript"
+	src="/school-service/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/school-service/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/school-service/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/bootstrap-confirm-delete@2.1.3/bootstrap-confirm-delete.min.js"></script>
+<!-- https://stackoverflow.com/questions/8982295/confirm-deletion-in-modal-dialog-using-twitter-bootstrap -->
+
+<script>
+	
+	
+		$('#mydtval').datepicker({
+			format : 'dd/mm/yyyy'
+		});
+
+
+	
+	</script>
+<script>
+
+	$('.deleteRecord').bootstrap_confirm_delete({
+		  heading: 'Delete',
+		  message: 'Are you sure you want to delete this Record?',
+		  data_type: null,
+		});
+	</script>
+
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+		})
+	</script>
+
+<script>
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+</script>
+
+<script type="text/javascript">
+
+$("select#stateSelect")
+.on(
+		"change",
+		function() {
+			alert("inside select change");
+			debugger;
+			var myval1 = $(this).val();
+			alert(myval1);
+			debugger;
+			
+			$("input#stateFlagId").attr("value", "yes")
+			 document.forms["form1"].submit();
+		}); 
+
+</script>
+<script type="text/javascript">
+
+$("a#updateId")
+.on(
+		"click",
+		function() {
+			alert("clicked on ancher tag update ");
+			debugger;
+			var myval1 = $(this).val();
+			alert(myval1);
+			debugger;
+			var myid = $("input#updateUserId").val();
+			alert(myid);
+			debugger;
+			 document.forms["updateFormId"].submit();
+			
+		}); 
+
+</script>
+
+
+
+
+
+</body>
+</html>
