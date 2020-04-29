@@ -2,6 +2,7 @@ package com.school.app.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Users implements Serializable {
 	private String state;
 	private List<PickLIst> pickList;
 	private String stateFlag;
+	private String uuidCode;
 	
 	
 	

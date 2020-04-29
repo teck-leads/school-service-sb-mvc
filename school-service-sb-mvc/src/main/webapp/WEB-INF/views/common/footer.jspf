@@ -107,7 +107,7 @@ $("a#updateId")
 		function() {
 			alert("clicked on ancher tag update ");
 			debugger;
-			var myval1 = $(this).val();
+			var myval1 = $(this). attr("href"); 
 			alert(myval1);
 			debugger;
 			var myid = $("input#updateUserId").val();

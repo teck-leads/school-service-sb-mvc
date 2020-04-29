@@ -9,8 +9,8 @@ public interface UsersDao {
 	
 	Users saveUsersInfo(Users usersInfo) throws Exception;
 	List<Users> findAllUsersInfo()throws Exception;
-	Users findUsersInfoById(Integer id)throws Exception;
-	int deleteUsersInfoById(Integer id)throws Exception;
+	Users findUsersInfoById(String id)throws Exception;
+	int deleteUsersInfoById(String id)throws Exception;
 	List<PickLIst> findAllStates()throws Exception;
 	
 

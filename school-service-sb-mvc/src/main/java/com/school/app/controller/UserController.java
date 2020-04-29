@@ -76,10 +76,20 @@ public class UserController {
 	}
 	
 
-	@GetMapping(value = { "/users/edit/{id}" })
-	public String editUser(Model model, @PathVariable("id") Integer id, @ModelAttribute("usersCmd") Users usersCmd) throws Exception {
+	@GetMapping(value = { "/users/edit/{code}" })
+	public String editUser(Model model, @PathVariable("code") String code, @ModelAttribute("usersCmd") Users usersCmd,BindingResult bindingResult) throws Exception {
+		
+		
+		if(bindingResult.hasErrors()) {
+			System.out.println("stop here");
+		}
+		Users user = userService.findUsersInfoById(code);
+		if(StringUtils.isEmpty(user.getId())) {
+			return "redirect:/register";
+		}
+		
 		model.addAttribute("statesKey", userService.findAllStates());
-		Users user = userService.findUsersInfoById(id);
+		
 		BeanUtils.copyProperties(user, usersCmd);
 		model.addAttribute("idKey", usersCmd.getId());
 		showHideCity(usersCmd, model);
@@ -108,7 +118,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = { "/users/delete/{id}" })
-	public String deleteUser(@PathVariable("id") Integer id) throws Exception {
+	public String deleteUser(@PathVariable("id") String id) throws Exception {
 		userService.deleteUsersInfoById(id);
 		return "redirect:/users";
 

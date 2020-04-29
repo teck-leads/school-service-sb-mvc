@@ -42,13 +42,14 @@ public class UserDaoImpl implements UsersDao {
 				.addValue("name", usersInfo.getName())
 				.addValue("age", usersInfo.getAge())
 				.addValue("city", usersInfo.getCapital())
-				.addValue("state", usersInfo.getState());
+				.addValue("state", usersInfo.getState())
+				.addValue("uuid", usersInfo.getUuidCode());
 				//count= namedParameterJdbcTemplate.update(DBQueries.INSERT_USERS, sqlParameterSource);
 				namedParameterJdbcTemplate.update(DBQueries.INSERT_USERS, sqlParameterSource, generatedKeyHolder, new String[] {"ID"});
 				Integer gentedKey =  generatedKeyHolder.getKey().intValue();
 				usersInfo.setId(gentedKey);
 			}
-			Users userInfo = findUsersInfoById(usersInfo.getId());
+			Users userInfo = findUsersInfoById(usersInfo.getUuidCode());
 			return userInfo;
 		} catch (DataAccessException e) {
 			throw e;
@@ -68,6 +69,7 @@ public class UserDaoImpl implements UsersDao {
 					info.setName(rs.getString("NAME"));
 					info.setCapital(rs.getString("CITY"));
 					info.setState(rs.getString("STATE"));
+					info.setUuidCode(rs.getString("UUID_CODE"));
 					usersInfos.add(info);
 				}
 
@@ -80,7 +82,7 @@ public class UserDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public Users findUsersInfoById(Integer id) throws Exception {
+	public Users findUsersInfoById(String id) throws Exception {
 		try {
 			SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("id", id);
 			Users info = new Users();
@@ -92,6 +94,7 @@ public class UserDaoImpl implements UsersDao {
 					info.setName(rs.getString("NAME"));
 					info.setCapital(rs.getString("CITY"));
 					info.setState(rs.getString("STATE"));
+					info.setUuidCode(rs.getString("UUID_CODE"));
 				}
 				return info;
 
@@ -103,7 +106,7 @@ public class UserDaoImpl implements UsersDao {
 	}
 	
 	@Override
-	public int deleteUsersInfoById(Integer id) throws Exception {
+	public int deleteUsersInfoById(String id) throws Exception {
 		try {
 			SqlParameterSource sqlParameterSource = new MapSqlParameterSource().
 					addValue("id", id);
