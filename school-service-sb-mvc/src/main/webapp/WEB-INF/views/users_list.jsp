@@ -10,7 +10,7 @@
 				<th>Age</th>
 				<th>State</th>
 				<th>Capital</th>
-				<th>Edit</th>
+				<th>Update</th>
 				<th>Remove</th>
 			</tr>
 		</thead>
@@ -24,7 +24,8 @@
 					<td>${user.state}</td>
 					<td>${user.capital}</td>
 					<td><a href="/school-service/users/edit/${user.uuidCode}" 
-						class="btn btn-info">Update</a>
+						class="btn btn-info">
+						<i class="fa fa-edit"></i> Edit</a>
 						<!-- class="btn btn-info" id="updateId">Update</a> -->
 						<%-- <form method="post" action="edit" id="updateFormId">
 						<input type="hidden" value="${user.id}" id="updateUserId">
@@ -47,7 +48,7 @@
 					</a> --%> <a href="#"
 						data-href="/school-service/users/delete/${user.uuidCode}"
 						data-toggle="modal" data-target="#confirm-delete"
-						class="btn btn-danger">Delete</a>
+						class="btn btn-danger">  <i class="fa fa-trash-o" style="font-size:24px;"></i> Delete</a>
 					</td>
 				</tr>
 			</c:forEach>
